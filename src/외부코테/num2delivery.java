@@ -1,3 +1,5 @@
+package 외부코테;
+
 import java.util.*;
 
 public class num2delivery {

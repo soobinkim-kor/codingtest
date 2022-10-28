@@ -1,3 +1,5 @@
+package 백준;
+
 import java.io.*;
 
 public class baek9095 {
