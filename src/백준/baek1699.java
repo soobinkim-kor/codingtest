@@ -1,40 +1,36 @@
 package 백준;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class baek1699 {
     public static void main(String[] args) {
+        int[] dp = new int[100001];
+        Arrays.fill(dp,Integer.MAX_VALUE);
+        dp[0]=0;
         Scanner scan = new Scanner(System.in);
         int n = scan.nextInt();
         scan.close();
-        ArrayList<Integer> arrayList = new ArrayList<>();
-        for(int i=1;i<=317;i++){
-            arrayList.add((int) Math.pow(i,2));
+        ArrayList<Integer> squares = new ArrayList<>();
+        for(int i=1;i<=316;i++){
+            squares.add((int) Math.pow(i,2));
+            dp[(int)Math.pow(i,2)]=1;
         }
+        for(int i=1;i<dp.length;i++){
 
-        int count=0;
-
-        while(n>0){
-            int index = find(arrayList,n);
-            System.out.print(arrayList.get(index)+" ");
-            n=n-arrayList.get(index);
-            count++;
-        }
-        System.out.println("\n"+count);
-    }
-
-    public static int find(ArrayList<Integer> arrayList, int target){
-        for(int i=0;i<arrayList.size();i++){
-            if(arrayList.get(i)==target){
-                return i;
-            }
-            else if(arrayList.get(i)>target){
-                return i-1;
+            for(int square : squares){
+                int newIndex = i+square;
+                if(newIndex>dp.length-1){
+                    break;
+                }
+                dp[newIndex] = Math.min(
+                        dp[i]+1,
+                        dp[newIndex]);
             }
         }
+        System.out.println(dp[n]);
 
-        return -1;
     }
 
 }
