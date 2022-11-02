@@ -19,15 +19,34 @@ public class baek1374 {
         int N = Integer.parseInt(br.readLine());
         PriorityQueue<Lecture> lecturePriorityQueue = new PriorityQueue<>();
         ArrayList<Lecture> lectures = new ArrayList<>();
-
+        ArrayList<Lecture> sortByEnd = new ArrayList<>();
+        ArrayList<Lecture> sortByStart = new ArrayList<>();
         for(int i=0;i<N;i++){
             String[] info = br.readLine().split(" ");
+            int num = Integer.parseInt(info[0]);
             int start = Integer.parseInt(info[1]);
             int end = Integer.parseInt(info[2]);
-
-            lecturePriorityQueue.add(new Lecture(start,end));
+            Lecture l = new Lecture(num,start,end);
+            sortByEnd.add(l);
+            sortByStart.add(l);
+            lecturePriorityQueue.add(new Lecture(num,start,end));
         }
 
+        Collections.sort(sortByStart, new Comparator<Lecture>() {
+            @Override
+            public int compare(Lecture o1, Lecture o2) {
+                return o1.start-o2.start;
+            }
+        });
+
+        Collections.sort(sortByEnd, new Comparator<Lecture>() {
+            @Override
+            public int compare(Lecture o1, Lecture o2) {
+                return o1.end-o2.end;
+            }
+        });
+        print(sortByStart);
+        print(sortByEnd);
         Lecture lecture = lecturePriorityQueue.poll();
         lectures.add(lecture);
 
@@ -51,8 +70,15 @@ public class baek1374 {
         }
         System.out.println(lectures.size());
     }
+    public static void print(ArrayList<Lecture> arrayList){
+        for(Lecture lec : arrayList){
+            System.out.print(lec.num+" "+lec.start+" "+lec.end);
+            System.out.println();
+        }
+    }
 
     public static class Lecture implements Comparable<Lecture>{
+        private int num;
         private int start;
         private int end;
 
@@ -60,7 +86,8 @@ public class baek1374 {
             this.end = end;
         }
 
-        public Lecture(int start, int end){
+        public Lecture(int num,int start, int end){
+            this.num=num;
             this.start=start;
             this.end=end;
         }
