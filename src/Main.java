@@ -9,7 +9,11 @@ public class Main {
             System.out.println(i);
         }
         String dart="10S10S10S";
-        System.out.println(stacksolution(dart));
+        //System.out.println(modulo(2,50));
+        long a = 1000000002;
+        int average = Math.round(100000000000000L);
+        System.out.print(average);
+
     }
 
     public static int stacksolution(String dartResult){

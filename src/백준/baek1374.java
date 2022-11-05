@@ -17,7 +17,9 @@ public class baek1374 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
+
         PriorityQueue<Lecture> lecturePriorityQueue = new PriorityQueue<>();
+
         ArrayList<Lecture> lectures = new ArrayList<>();
         ArrayList<Lecture> sortByEnd = new ArrayList<>();
         ArrayList<Lecture> sortByStart = new ArrayList<>();
@@ -32,19 +34,10 @@ public class baek1374 {
             lecturePriorityQueue.add(new Lecture(num,start,end));
         }
 
-        Collections.sort(sortByStart, new Comparator<Lecture>() {
-            @Override
-            public int compare(Lecture o1, Lecture o2) {
-                return o1.start-o2.start;
-            }
-        });
+        Collections.sort(sortByStart, (o1, o2) -> o1.start-o2.start);
 
-        Collections.sort(sortByEnd, new Comparator<Lecture>() {
-            @Override
-            public int compare(Lecture o1, Lecture o2) {
-                return o1.end-o2.end;
-            }
-        });
+        Collections.sort(sortByEnd, (o1, o2) -> o1.end-o2.end);
+
         print(sortByStart);
         print(sortByEnd);
         Lecture lecture = lecturePriorityQueue.poll();
