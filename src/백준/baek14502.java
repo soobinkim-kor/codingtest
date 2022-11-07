@@ -58,23 +58,6 @@ public class baek14502 {
             }
         }
 
-
-//         3개의 벽을 설치해야 하므로, 3개의 좌표가 담긴 쌍을 만들어서 wall 리스트에 추가한다.
-//         (0,1,2), (0,1,3), (0,1,4) 순으로 만들어진다. 각 숫자는 n으로 나눈 몫이 행의 좌표, 나머지가 열의 좌표가 된다.
-//        for(int i=0; i<n*m; i++){
-//            for(int j=i+1; j<n*m ; j++){
-//                for(int k=j+1 ; k<n*m ; k++){
-//                    if( lab[i/n][i%n]==0 &&  lab[j/n][j%n] == 0 &&  lab[k/n][k%n] == 0){
-//                        ArrayList<int[]> w = new ArrayList<>();
-//                        w.add(new int[]{i/n,i%n});
-//                        w.add(new int[]{j/n,j%n});
-//                        w.add(new int[]{k/n,k%n});
-//                        wall.add(w);
-//                    }
-//                }
-//            }
-//        }
-
         int answer = 0;
 
         // 세운 벽의 좌표를 기준으로 반복 실행
@@ -127,7 +110,7 @@ public class baek14502 {
 
                 // 새로운 좌표가 연구소를 벗어나지 않는지 확인
                 if(newX>=0 && newY>=0 && newX<m && newY<n){
-                    // 방문하지 않은 위치인지, 빈 공간인지 확인
+                    // 빈 공간인지 확인
                     if(lab[newX][newY]==0){
                         // 해당 위치를 바이러스가 있는 것으로 표기
                         lab[newX][newY]=2;
