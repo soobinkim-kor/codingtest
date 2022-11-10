@@ -8,11 +8,15 @@ import java.util.Stack;
 public class 택배상자 {
     public static void main(String[] args) throws InterruptedException {
         int[] test = new int[]{4,3,1,2,5};
-        int[] test1 = new int[]{1,2,3,4,5};
-
-        System.out.println(solution(test));
+        int[] test1 = new int[]{5,4,3,2,1};
+        int[] test2 = new int[]{1,2,3,4,5};
+        int[] test3 = new int[]{2,3,4,5,1};
+        int[] test4 = {2, 1, 4, 3, 6, 5, 8, 7, 10, 9};
+        //System.out.println(solution(test));
         //System.out.println(solution(test1));
-
+        //System.out.println(solution(test2));
+        //System.out.println(solution(test3));
+        System.out.println(solution(test4));
     }
     public static int solution(int[] order) throws InterruptedException {
         int answer = 0;
@@ -27,76 +31,61 @@ public class 택배상자 {
             container.add(i);
         }
 
-        while(!container.isEmpty()|| subBelt.peek()==order[count]){
+
+        // 모든 택배를 컨테이너 벨트에 올려놓을 때 까지 실행
+        while(!container.isEmpty()){
             Thread.sleep(500);
             System.out.println();
-            System.out.println("현재 "+(count+1)+" 번 택배");
-            System.out.println("컨테이너: "+container);
+            System.out.println("컨테이너 벨트: "+container);
+
             System.out.println("보조 벨트: "+subBelt);
-            if(!container.isEmpty() && !subBelt.isEmpty()){
-                if(order[count]!=container.peek() && order[count]!=subBelt.peek() && container.isEmpty()){
-                    System.out.println("둘다 안돼서 끝남");
-                    break;
-                }
-            }
-            if(container.isEmpty()){
+            System.out.println("트럭에 넣은 택배 갯수: "+count);
+            System.out.println("이번에 트럭에 넣어야 하는 택배 번호: "+order[count]);
+
+            if(!subBelt.isEmpty()){
                 if(subBelt.peek()==order[count]){
+                    System.out.println("보니까 보조 벨트에서 바로 꺼낼 수 있음ㅎㅎ");
+                    subBelt.pop();
+                    count++;
                     continue;
-                }else{
-                    break;
                 }
             }
+            // 컨테이너 벨트에서 받은 박스
             int box = container.poll();
-
-
-            System.out.println("현재 컨테이너벨트에서 내려온 박스: "+box);
-            if(box==order[count]){
-                System.out.println("순서가 딱 맞음");
+            System.out.println("현재 받은 택배: "+box);
+            // 현재 받은 택배가 내릴 순서이면
+            if(order[count]==box){
+                System.out.println("현재 받은 택배 바로 트럭에 실을 차례");
                 count++;
-                continue;
             }
-            System.out.println("순서가 맞지 않아 보조 벨트에 "+box+" 추가");
 
-            subBelt.push(box);
+            // 현재 컨테이너에서 받은 택배가 내릴 순서가 아니면
+            // 1. 보조 컨테이너에 넣음
+            else{
+                System.out.println("보조 벨트에서 꺼낼 수 없음 ㅠㅠ 그냥 보조 벨트에 올려");
+                subBelt.add(box);
 
-            int subBox = subBelt.peek();
-            if(subBox==order[count]){
-                count++;
-                subBelt.pop();
+
             }
+
+
+
         }
 
-        return count+1;
-        /*
-        for(int i=1;i<=boxes;i++){
-            System.out.println("현재 트럭에 실린 택배 갯수: "+count);
-            System.out.println("현재 보조 벨트: "+ subBelt);
-            System.out.println(i+" 번 택배 들어옴");
-
-            // 아직 트럭에 실을 차례가 아닌 애는 보조 벨트에 넣어놓음
-            if(order[count]!=i){
-                System.out.println(i+" 번 택배 가 들어올 순서가 아님");
-                if(!subBelt.isEmpty()){
-                    System.out.println("우선 보조 벨트에 들어있는지 확인");
-                    int box = subBelt.peek();
-                    if(box==count){
-                        System.out.println("보조 벨트에 들어있음 "+box+"빼면 됨");
-                        subBelt.pop();
-                        count++;
-                        continue;
-                    }
-                    System.out.println("보조 벨트의 순서가 맞지 않음");
-                }
-                System.out.println("일단 "+i+" 번 택배를 보조 벨트로 옮김");
-                subBelt.push(i);
-            }
-            else{
-                System.out.println(i+" 번 택배 가 들어올 순서임");
+        System.out.println("보조 컨테이너 벨트 확인");
+        while(!subBelt.isEmpty()){
+            System.out.println(subBelt);
+            if(subBelt.peek()==order[count]){
+                System.out.println("보조 컨테이너에서 pop");
+                subBelt.pop();
                 count++;
             }
-
-        }*/
-
+            else{
+                System.out.println("보조 컨테이너의 peek 이 맞지 않음.");
+                break;
+            }
+        }
+        return count;
     }
 }
 
