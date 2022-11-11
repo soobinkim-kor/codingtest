@@ -46,12 +46,10 @@ public class 택배상자 {
                 if(subBelt.isEmpty()){
                     System.out.println("보조 컨테이너가 비어있으므로 그냥 추가하면 됨");
                     subBelt.add(i);
-                    i--;
                 }
 
                 if(order[count]==subBelt.peek()){
                     System.out.println("보조 컨테이너에 있는 애 넣으면 됨");
-                    i--;
                     while(order[count]!=subBelt.peek()){
                         i++;
                         subBelt.pop();
