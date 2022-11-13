@@ -15,16 +15,17 @@ public class baek2178 {
         int n = Integer.parseInt(size[0]);
         int m = Integer.parseInt(size[1]);
         int[][] map = new int[n][m];
+
         for(int i=0;i<n;i++){
             String data = br.readLine();
             for(int j=0;j<m;j++){
-                map[i][j]=data.charAt(j)-48;
+                map[i][j]= data.charAt(j)-48;
             }
         }
 
         Queue<int[]> queue = new LinkedList<>();
         queue.add(new int[]{0,0,1});
-        int answer = 0;
+
         while(!queue.isEmpty()){
             int[] current = queue.poll();
             int row = current[0];
