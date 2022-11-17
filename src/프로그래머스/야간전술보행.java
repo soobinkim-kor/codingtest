@@ -6,13 +6,14 @@ public class 야간전술보행 {
     // 정렬하면 어렵지 않을 듯
     // SCOPE 와 TIME 을 기반으로 근무 상태 확인
     // 거리 + 휴식 시간의 나머지 로
+    static int current;
     public static void main(String[] args) {
         int[][] scope = {{3,4},{5,8}};
         int[][] times = {{2,5},{4,3}};
 
         int[][] scope2 = {{7,8},{4,6},{11,10}};
         int[][] times2 = {{2,2},{2,4},{3,3}};
-        System.out.println(solution(10,scope,times));
+        //System.out.println(solution(10,scope,times));
         System.out.println(solution(12,scope2,times2));
     }
     public static int solution(int distance, int[][] scope, int[][] times) {
@@ -24,21 +25,24 @@ public class 야간전술보행 {
         // 각 경비원들의 감시 구간을 시작 순으로 정렬
         ArrayList<Integer> sortedTimes = sortArray(guards);
         //System.out.println("시작 시간 순 정렬된 경비병 번호: "+sortedTimes);
+        for(int d : sortedTimes){
+            //System.out.println(Arrays.toString(guards.get(d)));
+        }
         // 각 경비병의 시작 순으로 정렬된 번호
+
         for(int guard : sortedTimes){
             // guard = 경비병의 번호
-            System.out.println("경비병 번호: "+guard);
+            //System.out.println("경비병 번호: "+guard);
 
-            int current = scope[sortedTimes.get(guard)][0];
-            System.out.println("여기서 시작: "+current);
+            current= scope[guard][0];
+            int end = scope[guard][1];
+            //System.out.println("목표 위치 : "+end);
+            //System.out.println("여기서 시작: "+current);
             int[] guardData = guards.get(guard);
-            current = isPresent(guardData,guard,times,current);
-            // 감시 시작 구간
-            System.out.println("여기까지 옴: "+current);
-            if(current!=scope[sortedTimes.get(guard)][1]){
-                System.out.println("다 오지 못했음.");
+            if(!isPresent(guardData,guard,times)){
                 return current;
             }
+            // 감시 시작 구간
         }
 
 
@@ -46,7 +50,7 @@ public class 야간전술보행 {
     }
 
     // 정해진 시간에, 그 경비병이 휴식하지 않는 시간이 있는지 확인하는 메소드
-    public static int isPresent(int[] guardData, int guard, int[][] times, int current){
+    public static boolean isPresent(int[] guardData, int guard, int[][] times){
         // 우선 진입 시간으로 확인
         // ex current 10초, 경비병 휴식 [근무: 2초, 휴식: 4초] -> 10/6 = 1세트 , 나머지 = 4 = 현재 시간에 경비 근무/휴식의 어느 부분에 있는지.
         // 나머지 - 근무 > 0 -> 근무 시간 지난 거. 휴식 중
@@ -64,38 +68,38 @@ public class 야간전술보행 {
         int guardEnd = guardData[1];
 
         int pass = guardEnd-guardStart;
+        //System.out.println("화랑이가 통과하려면 "+pass+" 초 지나가야함");
         // 근무 시간
         int guardActive = times[guard][0];
         // 휴식 시간
         int guardRest = times[guard][1];
-
+        //System.out.println("해당 경비병의 근무 시간: "+guardActive+" 휴식 시간: "+guardRest);
         // 경비원이 (휴식+근무를) 몇 세트 했는지
         //int startRest = current/(guardActive+guardRest);
         // 현재 시간에 경비 근무/휴식의 어느 부분에 있는지.
         int time = current%(guardActive+guardRest);
-        System.out.println("현재 경비병은 "+time);
-        if(time-guardActive<=0){
-            System.out.println("진입 시 경비병이 근무 중");
-            return current;
+        //System.out.println("현재 경비병은 의 위치: "+time);
+        if(time-guardActive<0){
+            //System.out.println("진입 시 경비병이 근무 중");
+            return false;
         }
 
-        int activeLeft = guardActive+guardRest-time;
-        System.out.println("현재 경비병은 "+activeLeft+" 초 후 근무 시작");
+        int activeLeft = guardActive+guardRest-time+1;
+        //System.out.println("현재 경비병은 "+activeLeft+" 초 후 근무 시작");
         if(activeLeft<=pass){
-            System.out.println("지나는 중 잡힘");
-            return guardEnd;
+            //System.out.println("지나는 중 잡힘");
+            current+=activeLeft;
+            return false;
         }
         else{
-            System.out.println("무사히 통과");
-            return current+activeLeft+1;
+            //System.out.println("무사히 통과");
+            return true;
         }
     }
 
     public static ArrayList<Integer> sortArray(HashMap<Integer,int[]> guards){
         ArrayList<Integer> guardsTime = new ArrayList<>(guards.keySet());
-        guardsTime.sort((g1, g2)
-                -> guards.get(g1)[0] - guards.get(g2)[0]);
-        System.out.println(guardsTime);
+        guardsTime.sort(Comparator.comparingInt(g -> guards.get(g)[0]));
         return guardsTime;
     }
 
