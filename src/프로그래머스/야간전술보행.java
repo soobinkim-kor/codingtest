@@ -13,9 +13,16 @@ public class 야간전술보행 {
 
         int[][] scope2 = {{7,8},{4,6},{11,10}};
         int[][] times2 = {{2,2},{2,4},{3,3}};
-        System.out.println(solution(10,scope,times));
+
+        int distance3 = 829;
+        int[][] scope3 = new int[][]{{821, 763}, {569, 740}, {295, 24}, {378, 391}, {456, 531}, {353, 366}};
+        int[][] time3 = new int[][]{{1, 4}, {6, 8}, {5, 8}, {7, 2}, {9, 5}, {6, 9}};
+
+        //System.out.println(solution(10,scope,times));
+        //System.out.println("---------------------");
+        //System.out.println(solution(12,scope2,times2));
         System.out.println("---------------------");
-        System.out.println(solution(12,scope2,times2));
+        System.out.println(solution(distance3,scope3,time3));
     }
     public static int solution(int distance, int[][] scope, int[][] times) {
         HashMap<Integer,int[]> guards = new HashMap<>();
@@ -27,9 +34,6 @@ public class 야간전술보행 {
         // 각 경비원들의 감시 구간을 시작 순으로 정렬
         ArrayList<Integer> sortedTimes = sortArray(guards);
         //System.out.println("시작 시간 순 정렬된 경비병 번호: "+sortedTimes);
-        for(int d : sortedTimes){
-            //System.out.println(Arrays.toString(guards.get(d)));
-        }
         // 각 경비병의 시작 순으로 정렬된 번호
 
         for(int guard : sortedTimes){
@@ -40,9 +44,9 @@ public class 야간전술보행 {
             current= Math.min(a,b);
             int start = Math.min(a,b);
             int end = Math.max(a,b);
-
-            System.out.println("경비병의 끝 위치 : "+end);
             System.out.println("현재 화랑이의 위치: "+current);
+            System.out.println("경비병이 감시하는 위치 : "+start+" ~ "+end);
+
             int[] guardData = guards.get(guard);
             if(!isPresent(guardData,guard,times,start,end)){
                 return current;
