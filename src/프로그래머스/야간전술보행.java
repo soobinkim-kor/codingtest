@@ -8,8 +8,8 @@ public class 야간전술보행 {
     // 거리 + 휴식 시간의 나머지 로
     static int current;
     public static void main(String[] args) {
-        int[][] scope = {{3,4},{5,8},{3,2}};
-        int[][] times = {{2,5},{4,3},{1,2}};
+        int[][] scope = {{3,4},{5,8}};
+        int[][] times = {{2,5},{4,3}};
 
         int[][] scope2 = {{7,8},{4,6},{11,10}};
         int[][] times2 = {{2,2},{2,4},{3,3}};
@@ -18,9 +18,9 @@ public class 야간전술보행 {
         int[][] scope3 = new int[][]{{821, 763}, {569, 740}, {295, 24}, {378, 391}, {456, 531}, {353, 366}};
         int[][] time3 = new int[][]{{1, 4}, {6, 8}, {5, 8}, {7, 2}, {9, 5}, {6, 9}};
 
-        //System.out.println(solution(10,scope,times));
-        //System.out.println("---------------------");
-        //System.out.println(solution(12,scope2,times2));
+        System.out.println(solution(10,scope,times));
+        System.out.println("---------------------");
+        System.out.println(solution(12,scope2,times2));
         System.out.println("---------------------");
         System.out.println(solution(distance3,scope3,time3));
     }
