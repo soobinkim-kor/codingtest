@@ -30,7 +30,6 @@ public class baek1920 {
             }
         }
 
-
         System.out.println(sb.toString());
 
     }
