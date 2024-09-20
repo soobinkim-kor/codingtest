@@ -1,19 +1,21 @@
-import java.util.Arrays;
-import java.util.Scanner;
+import Leetcode.BinarySearch704;
+
 import java.util.ArrayList;
 import java.util.Stack;
 
 public class Main {
     public static void main(String[] args){
-        for(int i=0;i<3;++i){
-            System.out.println(i);
-        }
-        String dart="10S10S10S";
-        //System.out.println(modulo(2,50));
-        long a = 1000000002;
-        int average = Math.round(100000000000000L);
-        System.out.print(average);
-
+        BinarySearch704 b = new BinarySearch704();
+        int answer = b.search(new int[]{-1,0,3,5,9,12}, 2);
+        System.out.println(answer);
+        int answer2 = b.search(new int[]{1,2,5,7}, 5);
+        System.out.println(answer2);
+        int answer3 = b.search(new int[]{2,5}, 5);
+        System.out.println(answer3);
+        int answer4 = b.search(new int[]{-1,0,5}, 5);
+        System.out.println(answer4);
+        int answer5 = b.search(new int[]{5}, 5);
+        System.out.println(answer5);
     }
 
     public static int stacksolution(String dartResult){
