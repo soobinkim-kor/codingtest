@@ -1,17 +1,15 @@
 import Leetcode.BinarySearch704;
 import Leetcode.FirstBadVersion278;
 import Leetcode.SearchInsertPosition35;
+import Leetcode.ValidPerfectSquare367;
 
 import java.util.ArrayList;
 import java.util.Stack;
 
 public class Main {
     public static void main(String[] args){
-        FirstBadVersion278 solution = new FirstBadVersion278();
-//        int answer = solution.firstBadVersion(5);
-//        System.out.println(answer);
-        int answer2 = solution.firstBadVersion(3);
-        System.out.println(answer2);
+        ValidPerfectSquare367 solution = new ValidPerfectSquare367();
+        System.out.println(solution.isPerfectSquare(168));
     }
 
     public static int stacksolution(String dartResult){
