@@ -5,10 +5,11 @@ import java.util.Stack;
 
 public class Main {
     public static void main(String[] args){
-        LastStoneWeight1046 solution = new LastStoneWeight1046();
+        KthLargestElementInAnArray215 solution = new KthLargestElementInAnArray215();
 //        System.out.println(solution.findMin(new int[]{1,2,3,4,5,6,7,8,9}));
 //        System.out.println(solution.findMin(new int[]{4,5,6,7,0,1,2}));
-        System.out.println(solution.lastStoneWeight(new int[]{2,2}));
+        System.out.println(solution.findKthLargest(new int[]{3,2,1,5,6,4},2));
+        System.out.println(solution.findKthLargest(new int[]{3,2,3,1,2,4,5,5,6},4));
     }
 
     public static int stacksolution(String dartResult){
