@@ -4,18 +4,18 @@ public class FindMinimuminRotatedSortedArray153 {
     public int findMin(int[] nums) {
         int start = 0;
         int end = nums.length - 1;
-        if(nums[start] < nums[end] || end == 0){
-            return nums[start];
-        }
-        int mid = 0;
-        while (start < end) {
-            mid = (start + end) / 2;
-            if(nums[mid - 1] < nums[mid]){
-                start = mid + 1;
+        int answer = Integer.MAX_VALUE;
+
+        while (start <= end) {
+            int mid = (start + end) / 2;
+            if(nums[mid] <= nums[end]){
+                end = mid - 1;
+                answer = Math.min(nums[mid], answer);
             }else{
-                return nums[mid];
+                start = mid + 1;
+
             }
         }
-        return nums[mid-1];
+        return answer;
     }
 }
