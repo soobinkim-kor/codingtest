@@ -6,11 +6,10 @@ import java.util.Stack;
 
 public class Main {
     public static void main(String[] args){
-        TopKFrequentElements347 solution = new TopKFrequentElements347();
+        KClosestPointsToOrigin973 solution = new KClosestPointsToOrigin973();
 //        System.out.println(solution.findMin(new int[]{1,2,3,4,5,6,7,8,9}));
 //        System.out.println(solution.findMin(new int[]{4,5,6,7,0,1,2}));
-        System.out.println(Arrays.toString(solution.topKFrequent(new int[]{3, 2, 1, 5, 6, 4}, 2)));
-        System.out.println(Arrays.toString(solution.topKFrequent(new int[]{3, 2, 3, 1, 2, 4, 5, 5, 6}, 4)));
+        System.out.println(Arrays.toString(solution.kClosest(new int[][]{{1,3},{-2,2}},1)));
     }
 
     public static int stacksolution(String dartResult){
