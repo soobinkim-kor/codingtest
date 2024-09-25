@@ -1,15 +1,19 @@
 import Leetcode.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Stack;
 
 public class Main {
     public static void main(String[] args){
-        KClosestPointsToOrigin973 solution = new KClosestPointsToOrigin973();
+        MergeKSortedLists23 solution = new MergeKSortedLists23();
 //        System.out.println(solution.findMin(new int[]{1,2,3,4,5,6,7,8,9}));
 //        System.out.println(solution.findMin(new int[]{4,5,6,7,0,1,2}));
-        System.out.println(Arrays.toString(solution.kClosest(new int[][]{{1,3},{-2,2}},1)));
+
+        ListNode[] listNodes = new ListNode[3];
+        listNodes[0] = new ListNode(1, new ListNode(4,new ListNode(5,null)));
+        listNodes[1] = new ListNode(1, new ListNode(3,new ListNode(4,null)));
+        listNodes[2] = new ListNode(2, new ListNode(6,null));
+        solution.mergeKLists(listNodes);
     }
 
     public static int stacksolution(String dartResult){
