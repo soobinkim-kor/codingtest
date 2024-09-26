@@ -1,36 +1,32 @@
 package Leetcode;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class MergeKSortedLists23 {
 
     public ListNode mergeKLists(ListNode[] lists) {
-        ListNode dummy = new ListNode(0);
-        while(true){
-            int minIndex = 0;
-            int minVal = Integer.MIN_VALUE;
-            for(int i = 0; i < lists.length; i++){
-                // i번째 노드의 최소 value
-                int min = Integer.MIN_VALUE;
-
-                if(lists[i] == null || lists[i].next == null){
-                    continue;
-                }
-                // 새로 접근할 노드의 시작
-                ListNode cur = lists[i];
-                while(null != cur){
-
-                    if(cur.val > min){
-                        min = cur.val;
-                        minIndex = i;
-                    }
-                    cur = cur.next;
-                }
+        int n = lists.length;
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        for(int i=0;i<n;i++){
+            ListNode itr = lists[i];
+            while(itr != null){
+                arrayList.add(itr.val);
+                itr = itr.next;
             }
-            dummy.val = minVal;
-            dummy.next = lists[minIndex];
-
-            break;
         }
-        return dummy.next;
+        if(n==0 || arrayList.isEmpty()){
+            return null;
+        }
+        Collections.sort(arrayList);
+        ListNode head = new ListNode(arrayList.get(0));
+        ListNode it = head;
+        for(int i=1;i<arrayList.size();i++){
+            it.next = new ListNode(arrayList.get(i));
+            it = it.next;
+        }
+        it.next = null;
+        return head;
     }
 
 }
