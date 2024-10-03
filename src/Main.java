@@ -5,10 +5,10 @@ import java.util.Stack;
 
 public class Main {
     public static void main(String[] args){
-        NumberOfIslands200 solution = new NumberOfIslands200();
+        MaxAreaOfIsland695 solution = new MaxAreaOfIsland695();
 //        System.out.println(solution.findMin(new int[]{1,2,3,4,5,6,7,8,9}));
 //        System.out.println(solution.findMin(new int[]{4,5,6,7,0,1,2}));
-        System.out.println(solution.numIslands(new char[][]{{'1','1','1','1','0'},{'1','1','0','1','0'},{'1','1','0','0','0'},{'0','0','0','0','0'}}));
+        System.out.println(solution.maxAreaOfIsland(new char[][]{{'1','1','1','1','0'},{'1','1','0','1','0'},{'1','1','0','0','0'},{'0','0','0','0','0'}}));
 
     }
 
