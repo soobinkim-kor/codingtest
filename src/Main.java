@@ -5,15 +5,11 @@ import java.util.Stack;
 
 public class Main {
     public static void main(String[] args){
-        MergeKSortedLists23 solution = new MergeKSortedLists23();
+        NumberOfIslands200 solution = new NumberOfIslands200();
 //        System.out.println(solution.findMin(new int[]{1,2,3,4,5,6,7,8,9}));
 //        System.out.println(solution.findMin(new int[]{4,5,6,7,0,1,2}));
+        System.out.println(solution.numIslands(new char[][]{{'1','1','1','1','0'},{'1','1','0','1','0'},{'1','1','0','0','0'},{'0','0','0','0','0'}}));
 
-        ListNode[] listNodes = new ListNode[3];
-        listNodes[0] = new ListNode(1, new ListNode(4,new ListNode(5,null)));
-        listNodes[1] = new ListNode(1, new ListNode(3,new ListNode(4,null)));
-        listNodes[2] = new ListNode(2, new ListNode(6,null));
-        solution.mergeKLists(listNodes);
     }
 
     public static int stacksolution(String dartResult){
